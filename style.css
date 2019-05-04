@@ -9,6 +9,10 @@
   display: inline-block;
   font-size: 16px;
 }
+
+ul li.current{
+　background-color: #DEEBF7;
+}
  
 #nav li a {
   text-decoration: none;
