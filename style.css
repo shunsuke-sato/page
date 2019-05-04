@@ -10,14 +10,17 @@
   font-size: 16px;
 }
 
-#nav li.current {
-  background-color: #333;
-}
-
-
  
 #nav li a {
   text-decoration: none;
   color: #fff;
   font-weight: bold;
 }
+
+#nav li.current a {
+  text-decoration: none;
+  color: #fff;
+  background-color: #333;
+  font-weight: bold;
+}
+
