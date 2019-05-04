@@ -10,9 +10,11 @@
   font-size: 16px;
 }
 
-ul li.current{
-　background-color: #DEEBF7;
+#nav li.current {
+  background-color: #333;
 }
+
+
  
 #nav li a {
   text-decoration: none;
