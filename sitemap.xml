@@ -5,57 +5,66 @@
 <url>
   <loc>https://shunsuke-sato.github.io/page/</loc>
   <priority>1.0</priority>
-  <lastmod>2019-05-06T05:45:28+09:00</lastmod>
 </url>
 <url>
   <loc>https://shunsuke-sato.github.io/page/index.html</loc>
   <priority>0.8</priority>
-  <lastmod>2019-05-06T05:45:28+09:00</lastmod>
 </url>
 <url>
   <loc>https://shunsuke-sato.github.io/page/cv.html</loc>
   <priority>0.8</priority>
-  <lastmod>2019-05-06T05:45:28+09:00</lastmod>
 </url>
 <url>
   <loc>https://shunsuke-sato.github.io/page/publication.html</loc>
   <priority>0.8</priority>
-  <lastmod>2019-05-06T05:45:28+09:00</lastmod>
 </url>
 <url>
   <loc>https://shunsuke-sato.github.io/page/presentation.html</loc>
   <priority>0.8</priority>
-  <lastmod>2019-05-06T05:45:28+09:00</lastmod>
 </url>
 <url>
   <loc>https://shunsuke-sato.github.io/page/etc.html</loc>
   <priority>0.8</priority>
-  <lastmod>2019-05-06T05:45:28+09:00</lastmod>
 </url>
 <url>
   <loc>https://shunsuke-sato.github.io/page/index_ja.html</loc>
   <priority>0.8</priority>
-  <lastmod>2019-05-06T05:45:28+09:00</lastmod>
+</url>
+<url>
+  <loc>https://shunsuke-sato.github.io/page/etc/periodic_table/index.html</loc>
+  <priority>0.7</priority>
 </url>
 <url>
   <loc>https://shunsuke-sato.github.io/page/cv_ja.html</loc>
   <priority>0.7</priority>
-  <lastmod>2019-05-06T05:45:28+09:00</lastmod>
 </url>
 <url>
   <loc>https://shunsuke-sato.github.io/page/publication_ja.html</loc>
   <priority>0.7</priority>
-  <lastmod>2019-05-06T05:45:28+09:00</lastmod>
 </url>
 <url>
   <loc>https://shunsuke-sato.github.io/page/presentation_ja.html</loc>
   <priority>0.7</priority>
-  <lastmod>2019-05-06T05:45:28+09:00</lastmod>
 </url>
 <url>
   <loc>https://shunsuke-sato.github.io/page/etc_ja.html</loc>
   <priority>0.7</priority>
-  <lastmod>2019-05-06T05:45:28+09:00</lastmod>
+</url>
+<url>
+  <loc>https://shunsuke-sato.github.io/page/etc/periodic_table/H.html</loc>
+  <priority>0.6</priority>
+</url>
+<url>
+  <loc>https://shunsuke-sato.github.io/page/etc/periodic_table/He.html</loc>
+  <priority>0.6</priority>
+</url>
+<url>
+  <loc>https://shunsuke-sato.github.io/page/etc/periodic_table/Li.html</loc>
+  <priority>0.6</priority>
+</url>
+<url>
+  <loc>https://shunsuke-sato.github.io/page/etc/periodic_table/Be.html</loc>
+  <priority>0.6</priority>
 </url>
 
 </urlset>
