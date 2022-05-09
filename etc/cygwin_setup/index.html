@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width,initial-scale=1">    
+    <link rel='stylesheet' href='https://cdn.jsdelivr.net/gh/kognise/water.css@latest/dist/light.css'>
+    <link rel='stylesheet' href='../../style.css'> 
+    <link rel='icon' href='../../favicon.ico'>
+
+    <title>Shunsuke A. Sato</title>
+  </head>
+  <body>
+
+    <header>
+      <h1>Shunsuke A. Sato </h1>
+    </header>
+	  <main>
+      <ul id="nav">
+        <li><a href="../index_ja.html">ホーム</a></li>
+        <li><a href="../cv_ja.html">連絡先/経歴</a></li>
+        <li><a href="publication_ja.html">論文</a></li>
+        <li><a href="../presentation_ja.html">発表</a></li>
+        <li class='current'><a href="../etc_ja.html">その他</a></li>
+        <li><a href="../index.html">English</a></li>
+      </ul>
+
+      <h2 style="color:#FF3C3C;">Windows PC上でのCygwin環境の構築</h2>
+      <p>授業でFortran等を用いた数値計算の実習する際に、Windows PC上にCygwin環境を構築する方法を解説します。本ページの解説は、「<a href="https://www.sw.it.aoyama.ac.jp/2011/CP1/cygwin/">Cygwin インストール</a>」を参考に書かれています。リンク先のページも参考にしてください。</p>
+      <p>以下では、「1. Cygwinのインストール」、「2. Fortranプログラミン環境の確認」、「3. gnuplotによる数値計算結果描画環境の構築」について、それぞれ説明します。</p>
+      <hr>
+      
+
+      <section>
+
+        <h2><p style="color:blue;">1. Cygwinのインストール</p></h2>
+	<p><b>Step 1:</b><br> まず、Windows PCにCygwinをインストールしていきます。<a href="https://www.cygwin.com/">Cygwinのwebサイト</a>からCygwinのインストーラーをダウンロードします。インストーラーは下の画像のように、"Installing Cygwin"の箇所の赤線で囲まれた部分からダウンロードすることが出来ます。
+	</p>
+	<img src="./fig/cygwin_installer.png" alt="Cygwin download page" />
+
+	
+	<br><br><hr>
+	<p><b>Step 2:</b><br>
+	  ダウンロードしたCygwinのインストーラを起動すると下記のようなアプリケーションが立ち上がるので、「次へ」をクリックしてインストールを進めていきます。
+	</p>
+	<img src="./fig/cygwin_install_01.png" alt="Cygwin installing 01" />
+
+	<br><br><hr>
+	<p><b>Step 3:</b><br>
+	  どこのCygwinソースを使うかを聞かれるので、デフォルト選択肢の"Install from Internet"を選択して「次へ」をクリックし、インストールをさらに進めます。
+	</p>
+	<img src="./fig/cygwin_install_02.png" alt="Cygwin installing 02" />
+
+	<br><br><hr>
+	<p><b>Step 4:</b><br>
+	  次に、どのディレクトリ/フォルダにCygwinをインストールするかを聞かれるので、特にこだわりがなければ、デフォルト選択肢のまま「次へ」をクリックし、インストールをさらに進めます。
+	</p>
+	<img src="./fig/cygwin_install_03.png" alt="Cygwin installing 03" />		
+	
+
+	<br><br><hr>
+	<p><b>Step 5:</b><br>
+	  次に、どのディレクトリ/フォルダにCygwinでつかうパッケージをダウンロードするかを聞かれるので、特にこだわりがなければ、デフォルト選択肢のまま「次へ」をクリックし、インストールをさらに進めます。
+	</p>
+	<img src="./fig/cygwin_install_04.png" alt="Cygwin installing 04" />
+
+
+	<br><br><hr>
+	<p><b>Step 6:</b><br>
+	  次に、インターネットへどのように接続するかを聴かれますが、デフォルト選択肢のまま「次へ」をクリックし、インストールをさらに進めます。
+	</p>
+	<img src="./fig/cygwin_install_05.png" alt="Cygwin installing 05" />
+
+	<br><br><hr>
+	<p><b>Step 7:</b><br>
+	  次に、どのサイトからダウンロードするかを聞かれます。国内でインストールする場合は、国内のサイト(.jpで終わるもの)からダウンロードするとダウンロードが早く終わると予想されます。下記画像では"http://ftp.jaist.ac.jp"からダウンロードしています。
+	</p>
+	<img src="./fig/cygwin_install_06.png" alt="Cygwin installing 06" />		
+
+
+	<br><br><hr>
+	<p><b>Step 8:</b><br>
+	  次に、どのパッケージ(コンパイラやその他のソフト等)をインストールするかを選んでいきます。まず、下の図の赤線で囲われた箇所の"View"の欄の"Category"をクリックし、"Full"に変更します。
+	</p>
+	<img src="./fig/cygwin_install_07.png" alt="Cygwin installing 07" />
+
+	<br><br><hr>
+	<p><b>Step 9:</b><br>
+	  次に、どのパッケージ(コンパイラやその他のソフト等)をインストールするかを選んでいきます。まず、下の図の赤線で囲われた箇所の"View"の欄の"Category"をクリックし、"Full"に変更します。
+	</p>
+	<img src="./fig/cygwin_install_07.png" alt="Cygwin installing 07" />			
+
+	<br><br><hr>	
+	<p><b>Step 10:</b><br>
+	  次に、どのパッケージを選んでいきます。ここでは、<b>diffutils, gcc-core, gcc-g++, gcc-fortran, gnuplot-base,gnuplot-X11, emacs-w32</b>の7つのパッケージをデフォルトのパッケージに追加してインストールしていきます。まず、下図の赤線の部分のsearchにそれぞれのパッケージの名前を入れ、パッケージを検索します。次に、検索により見つかったパッケージのNewの欄(下図の青線で囲まれた部分)をクリックして、パッケージのバージョンを選びます。特にこだわりが無ければ、安定版(非test版)で最新のものを選びましょう。尚、"Skip"はインストールを行わないことを意味しており、初めから"Skip"以外のバージョンが指定されている場合は、そのままにしておきましょう。
+	</p>
+	<img src="./fig/cygwin_install_08.png" alt="Cygwin installing 08" />			
+	
+      </section>
+    </main>
+    <footer>
+<br><br><br>
+    </footer>
+  </body>
+</html>
