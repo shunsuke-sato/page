@@ -16,17 +16,17 @@
     </header>
 	  <main>
       <ul id="nav">
-        <li><a href="../index_ja.html">ホーム</a></li>
-        <li><a href="../cv_ja.html">連絡先/経歴</a></li>
-        <li><a href="publication_ja.html">論文</a></li>
-        <li><a href="../presentation_ja.html">発表</a></li>
-        <li class='current'><a href="../etc_ja.html">その他</a></li>
-        <li><a href="../index.html">English</a></li>
+        <li><a href="../../index_ja.html">ホーム</a></li>
+        <li><a href="../../cv_ja.html">連絡先/経歴</a></li>
+        <li><a href="../../publication_ja.html">論文</a></li>
+        <li><a href="../../presentation_ja.html">発表</a></li>
+        <li class='current'><a href="../../etc_ja.html">その他</a></li>
+        <li><a href="../../index.html">English</a></li>
       </ul>
 
-      <h2 style="color:#FF3C3C;">Windows PC上でのCygwin環境の構築</h2>
+      <h2 style="color:#FF3C3C;">Windows PC上でのCygwin環境の構築 </h2>(最終更新日:2022/05/10)
       <p>授業でFortran等を用いた数値計算の実習する際に、Windows PC上にCygwin環境を構築する方法を解説します。本ページの解説は、「<a href="https://www.sw.it.aoyama.ac.jp/2011/CP1/cygwin/">Cygwin インストール</a>」を参考に書かれています。リンク先のページも参考にしてください。</p>
-      <p>以下では、「1. Cygwinのインストール」、「2. Fortranプログラミン環境の確認」、「3. gnuplotによる数値計算結果描画環境の構築」について、それぞれ説明します。</p>
+      <p>以下では、「1. Cygwinのインストール」、「2. gnuplotによる数値計算結果描画環境の構築」について、それぞれ説明します。</p>
       <hr>
       
 
@@ -91,9 +91,78 @@
 
 	<br><br><hr>	
 	<p><b>Step 10:</b><br>
-	  次に、どのパッケージを選んでいきます。ここでは、<b>diffutils, gcc-core, gcc-g++, gcc-fortran, gnuplot-base,gnuplot-X11, emacs-w32</b>の7つのパッケージをデフォルトのパッケージに追加してインストールしていきます。まず、下図の赤線の部分のsearchにそれぞれのパッケージの名前を入れ、パッケージを検索します。次に、検索により見つかったパッケージのNewの欄(下図の青線で囲まれた部分)をクリックして、パッケージのバージョンを選びます。特にこだわりが無ければ、安定版(非test版)で最新のものを選びましょう。尚、"Skip"はインストールを行わないことを意味しており、初めから"Skip"以外のバージョンが指定されている場合は、そのままにしておきましょう。
+	  次に、どのパッケージを選んでいきます。ここでは、<b>diffutils, gcc-core, gcc-g++, gcc-fortran, gnuplot-base,gnuplot-X11, emacs-w32</b>の7つのパッケージをデフォルトのパッケージに追加してインストールしていきます。まず、下図の赤線の部分のsearchにそれぞれのパッケージの名前を入れ、パッケージを検索します。次に、検索により見つかったパッケージのNewの欄(下図の青線で囲まれた部分)をクリックして、パッケージのバージョンを選びます。特にこだわりが無ければ、安定版(非test版)で最新のものを選びましょう。尚、"Skip"はインストールを行わないことを意味しており、初めから"Skip"以外のバージョンが指定されている場合は、そのままにしておきましょう。上記の全てのパッケージについてパッケージの選択が終わったら、右下にある「次へ」をクリックしてファイルのダウンロードを進めます。<a style="color:#FF3C3C;">また、ここで追加し忘れてしまったパッケージや新しく使いたいパッケージがあとから出てきた場合は、ここで用いているインストーラを使って、ここまでと同様の手順を踏むことで、既にインストールされているCygwinにパッケージを追加することが出来ます。</a>
 	</p>
-	<img src="./fig/cygwin_install_08.png" alt="Cygwin installing 08" />			
+	<img src="./fig/cygwin_install_08.png" alt="Cygwin installing 08" />
+
+	<br><br><hr>	
+	<p><b>Step 11:</b><br>
+	  下図のように、どのパッケージをインストールするか確認をされるので、問題なければ「次へ」をクリックしてインストールを続けます。
+	</p>
+	<img src="./fig/cygwin_install_09.png" alt="Cygwin installing 09" />
+
+	<br><br><hr>	
+	<p><b>Step 12:</b><br>
+	  インターネットを経由してファイルのダウンロードとインストールが始まります。ダウンロード・インストールにはしばらく時間がかかることがあり、15分から30分程度かかる事もあるようです。この解説ページを作っている際の環境では、この工程に<a style="color:#FF3C3C;">5分程度の時間がかかりました</a>。
+	</p>
+	<img src="./fig/cygwin_install_10.png" alt="Cygwin installing 10" />
+
+	<br><br><hr>	
+	<p><b>Step 13:</b><br>
+	  インストールが終わると、下記のような報告が出ますので、そのまま「完了」をクリックし、インストールを完了してください。
+	</p>
+	<img src="./fig/cygwin_install_11.png" alt="Cygwin installing 11" />
+
+	<br><br><hr>	
+	<p><b>Step 14:</b><br>
+	  最後に、Cygwinに正しくFortranがインストールされたかを確認して、環境構築を終了します。先ほどの工程でデスクぷトップ画面に作られたCygwinのショートカットからCygwinを起動します。起動したCygwin上で、下記の画像のように"gfortran"または"gfortran.exe"を入力し、Enterキーを押します。すると
+	  <pre><code>gfortran: fatal error: no input files
+compilation terminated.</code></pre>
+	  というようなエラーメッセージが出力されます。このようなメッセージが出力されれば、正常にFortranコンパイラがインストールされていますので、環境構築作業は終わりです。
+	</p>
+	<img src="./fig/fortran_chk.png" alt="Check Fortran installation" />
+
+	<br><br><hr>
+
+        <h2><p style="color:blue;">2. gnuplotによる数値計算結果可視化環境の構築</p></h2>
+	<p><b>Step 1:</b><br> ここでは上記で準備されたCygwin上で、gnuplot(<a href="http://www.gnuplot.info/">http://www.gnuplot.info/</a>)を用いて数値計算結果をグラフにして可視化するための環境を構築します。上記のCygwinインストール時にgnuplotも同時にインストールされているので、Cygwin上で"gnuplot"と入力しEnterキーを押すことで、下図のようにgnuplotを起動することが出来ます。
+	  <img src="./fig/gnuplot_prep_01.png" alt="Gnuplot preparation 01" />	  
+	</p>	
+	<br><br><hr>
+
+	<p><b>Step 2:</b><br> 次に、起動したgnuplotで三角関数のグラフを描画することを試みます。起動したgnuplotのコマンドライン(下記画像の"gnuplot >"の箇所)に次のようなコマンドを入力し、Enterキーを押します。
+	  <pre><code>gnuplot> plot sin(x) with line</code></pre>
+	  これは、三角関数(sin(x))の線を描画する命令ですが、下図のようなエラーメッセージが出力され、グラフの描画に失敗してしまいます。
+	  <pre><code>gnuplot: unable to open display 'localhost:0.0'
+gnuplot: X11 aborted.</code></pre>
+	  これは、Cygwin側での描画命令を受けてパソコン上で画像を表示するソフトが動いていないことによるエラーです。この問題を解決するために、Xming (<a href="http://www.straightrunning.com/XmingNotes/">http://www.straightrunning.com/XmingNotes/</a>)をインストールします。<a fref="https://sourceforge.net/projects/xming/">Xmingのダウンロードサイト</a>から下図赤線のようなダウンロードボタンからXmingのインストーラーをダウンロードします。
+	  <img src="./fig/xming_install_01.png" alt="Xming install 01" />	  
+	</p>	
+	<br><br><hr>
+
+	<p><b>Step 3:</b><br> 上記のステップでダウンロードしたインストーラを起動し、Xmingのインストールを進めていきます。基本的にデフォルトの選択肢を選んでいけば問題ありませんが、下図のように「インストールした後にデスクトップにXmingのショートカットを作るか」を聞かれますので、"<b>Create a desktop icon for Xming</b>"の箇所にチェックを入れてショートカットを作っておくと、後々便利です。
+	  <img src="./fig/xming_install_02.png" alt="Xming install 02" />	  
+	</p>	
+	<br><br><hr>
+
+	<p><b>Step 4:</b><br> Xmingのインストールが終了すると、自動的にXmingが起動します。Xmingが起動している場合、下図の右下のようにXmingのアイコンが表示されます。XmingはPCの起動と同時には立ち上がらないので、Cygwinでgnuplotを使う際には自分でXmingを起動する必要があります。その場合は、このインストールの過程で作成されたデスクトップ上のXmingのショートカットから起動するか、WindowsのスタートアップにXmingを登録して自動でPC立ち上げ時に自動で起動するようにしておきましょう。
+	  <img src="./fig/xming_install_03.png" alt="Xming install 03" />	  
+	</p>	
+	<br><br><hr>
+
+
+	<p><b>Step 5:</b><br> 最後に、Cygwinを起動し、ホームディレクトリ(立ち上げたにいるディレクトリ)にある.bashrcファイルに下記の行を追記して、再度Cygwinを再起動します。
+	  <pre><code>export DISPLAY=localhost:0.0</code></pre>
+	  これにより、Xmingを通じてディスプレイ上にグラフが描画されるようになります。尚、Cygwinを再起動する代わりに、Cygwin上で<pre><code>source .bashrc</code></pre>を実行することで、更新した".bashrc"ファイルを再読み込みすることで設定を更新することもできます。
+	</p>	
+	<br><br><hr>
+
+	<p><b>Step 6:</b><br> gnuplotでの描画環境が正しく設定されたか確認するために、上記のstep 1とstep 2を再度行ってみましょう。正しく環境が設定されて入れば、下図のようにgnuplotによって三角関数が画面上に描画されます。正しく画像が描画されれば、gnuplotを使った数値計算可視化環境の構築は終了です。
+	  <img src="./fig/gnuplot_chk_01.png" alt="Gnuplot check 01" />	  
+	</p>	
+	<br><br><hr>
+	
+
 	
       </section>
     </main>
