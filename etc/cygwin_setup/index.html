@@ -26,13 +26,13 @@
 
       <h2 style="color:#FF3C3C;">Windows PC上でのCygwin環境の構築 </h2>(最終更新日:2022/05/10)
       <p>授業でFortran等を用いた数値計算の実習する際に、Windows PC上にCygwin環境を構築する方法を解説します。本ページの解説は、「<a href="https://www.sw.it.aoyama.ac.jp/2011/CP1/cygwin/">Cygwin インストール</a>」を参考に書かれています。リンク先のページも参考にしてください。</p>
-      <p>以下では、「1. Cygwinのインストール」、「2. gnuplotによる数値計算結果描画環境の構築」について、それぞれ説明します。</p>
+      <p>以下では、「<a href="#cygwin">1. Cygwinのインストール</a>」、「<a href="#fortran">2. Fortranプログラムの実行</a>」、「<a href="#gnuplot">3. gnuplotによる数値計算結果描画環境の構築</a>」について、それぞれ説明します。</p>
       <hr>
       
 
       <section>
 
-        <h2><p style="color:blue;">1. Cygwinのインストール</p></h2>
+        <h2><a style="color:blue;" name="cygwin">1. Cygwinのインストール</a></h2>
 	<p><b>Step 1:</b><br> まず、Windows PCにCygwinをインストールしていきます。<a href="https://www.cygwin.com/">Cygwinのwebサイト</a>からCygwinのインストーラーをダウンロードします。インストーラーは下の画像のように、"Installing Cygwin"の箇所の赤線で囲まれた部分からダウンロードすることが出来ます。
 	</p>
 	<img src="./fig/cygwin_installer.png" alt="Cygwin download page" />
@@ -115,7 +115,7 @@
 
 	<br><br><hr>	
 	<p><b>Step 14:</b><br>
-	  最後に、Cygwinに正しくFortranがインストールされたかを確認して、環境構築を終了します。先ほどの工程でデスクぷトップ画面に作られたCygwinのショートカットからCygwinを起動します。起動したCygwin上で、下記の画像のように"gfortran"または"gfortran.exe"を入力し、Enterキーを押します。すると
+	  最後に、Cygwinに正しくFortranがインストールされたかを確認して、環境構築を終了します。先ほどの工程でデスクトップ画面に作られたCygwinのショートカットからCygwinを起動します。起動したCygwin上で、下記の画像のように"gfortran"または"gfortran.exe"を入力し、Enterキーを押します。すると
 	  <pre><code>gfortran: fatal error: no input files
 compilation terminated.</code></pre>
 	  というようなエラーメッセージが出力されます。このようなメッセージが出力されれば、正常にFortranコンパイラがインストールされていますので、環境構築作業は終わりです。
@@ -124,7 +124,43 @@ compilation terminated.</code></pre>
 
 	<br><br><hr>
 
-        <h2><p style="color:blue;">2. gnuplotによる数値計算結果可視化環境の構築</p></h2>
+        <h2><a style="color:blue;" name="fortran">2. Fortranプログラムの実行</a></h2>
+	<p><b>Step 1:</b><br> ここでは上記で準備されたCygwin上で、簡単なFortranのプログラムを書いて実行してみます。まず、Cygwinを立ち上げ、下の画像のようにコマンド<code>pwd</code>を入力しEnterキーを押してみます。すると、今、ターミナルが開かれているディレクトリ/フォルダの場所・名前が表示されます。下の画像では、ターミナルが<code>/home/shuns</code>というディレクトリで開かれていることが示されています。
+	  <img src="./fig/fortran_01.png" alt="Fortran 01" />	  
+	</p>	
+	<br><br><hr>
+
+	<p><b>Step 2:</b><br> 次に、ターミナル上でコマンド<code>ls</code>を打ってみます。このコマンドは、現在ターミナルが開かれているディレクトリの中にあるファイル・ディレクトリの名前のリストを出力するコマンドです。Cygwinをインストールした直後の場合、ユーザーのディレクトリが空になっているので、下の画像のように何も出力が表示されないかもしれません。
+	  <img src="./fig/fortran_02.png" alt="Fortran 02" />	  
+	</p>	
+	<br><br><hr>
+
+	<p><b>Step 3:</b><br> 次に、エディター(ファイル編集ソフト)を使って、Fortranの簡単なプログラムを書いてみます。ここでは、上記のcygwinのインストールの際に一緒にインストールしたemacsというエディタを使ってみます。下の画像のように、ターミナル上で<code>emacs hello.f90</code>と入力しEnterキーを押すと、emacsエディタでhello.f90という名前のファイルを開き編集を行うことが出来るようになります。ここでは、さらに次のようなコードをファイルに書き込み、プログラムを保存してemacsを閉じます。
+	  <pre><code>program main
+  write(*,*)'Hello world!!'
+end program</code></pre>
+	  <img src="./fig/fortran_03.png" alt="Fortran 03" />	  
+	</p>	
+	<br><br><hr>
+
+	<p><b>Step 4:</b><br> 上記の作業でemacsエディタによりhello.f90というFortranのプログラムを作成したので、再びターミナル上で<code>ls</code>コマンドを実行し、hello.f90ファイルが作られているかを確認します。下の画像では、<code>ls</code>コマンドによって、ファイル<code>hello.f90</code>が新しく作られていることを確認しています。
+	  <img src="./fig/fortran_04.png" alt="Fortran 04" />	  
+	</p>	
+	<br><br><hr>
+
+	<p><b>Step 5:</b><br> 次に、Fortranのコード<code>hello.f90</code>からコンピュータが実行可能な実行ファイルを作る作業を行います。この作業はコンパイルと呼ばれ、次のようなコマンドをターミナル上で打ち込むことにより実行できます。<pre><code>gfortran hello.f90 -o hello</code></pre>
+	  このコマンドにより、Fortranのソースファイルhello.f90がコンパイルされ、実行ファイル<code>hello.exe</code>が作成されます。実行ファイルが作成されたか、再び<code>ls</code>コマンドを使って確認してみましょう。
+	  <img src="./fig/fortran_05.png" alt="Fortran 05" />	  
+	</p>	
+	<br><br><hr>
+
+	<p><b>Step 6:</b><br> 最後に、作成された実行ファイル<code>hello.exe</code>を実際に実行してみます。ファイルを実行するために、下記のコマンドをターミナル上で打ち込んでみます。<pre><code>./hello.exe</code></pre>
+	  すると、画面上に"Hello world!!"という文字列が出力されます。これは、先ほど作成したプログラムによって出力された文字列です。さらにFortran言語を使ったプログラミングについて学びたい方は、<a href="https://wwwnucl.ph.tsukuba.ac.jp/comp_phys">筑波大学原子核理論研究室の数値計算</a>のページをご覧ください。
+	  <img src="./fig/fortran_06.png" alt="Fortran 06" />	  
+	</p>	
+	<br><br><hr>					
+
+        <h2><a style="color:blue;" name="gnuplot">3. gnuplotによる数値計算結果可視化環境の構築</a></h2>
 	<p><b>Step 1:</b><br> ここでは上記で準備されたCygwin上で、gnuplot(<a href="http://www.gnuplot.info/">http://www.gnuplot.info/</a>)を用いて数値計算結果をグラフにして可視化するための環境を構築します。上記のCygwinインストール時にgnuplotも同時にインストールされているので、Cygwin上で"gnuplot"と入力しEnterキーを押すことで、下図のようにgnuplotを起動することが出来ます。
 	  <img src="./fig/gnuplot_prep_01.png" alt="Gnuplot preparation 01" />	  
 	</p>	
