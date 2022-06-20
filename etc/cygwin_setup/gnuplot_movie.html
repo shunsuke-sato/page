@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width,initial-scale=1">    
+    <link rel='stylesheet' href='https://cdn.jsdelivr.net/gh/kognise/water.css@latest/dist/light.css'>
+    <link rel='stylesheet' href='../../style.css'> 
+    <link rel='icon' href='../../favicon.ico'>
+
+    <title>Shunsuke A. Sato</title>
+  </head>
+  <body>
+
+    <header>
+      <h1>Shunsuke A. Sato </h1>
+    </header>
+	  <main>
+      <ul id="nav">
+        <li><a href="../../index_ja.html">ホーム</a></li>
+        <li><a href="../../cv_ja.html">連絡先/経歴</a></li>
+        <li><a href="../../publication_ja.html">論文</a></li>
+        <li><a href="../../presentation_ja.html">発表</a></li>
+        <li class='current'><a href="../../etc_ja.html">その他</a></li>
+        <li><a href="../../index.html">English</a></li>
+      </ul>
+
+      <h2 style="color:#FF3C3C;">Gnuplotを使って動画を作ってみよう</h2>(最終更新日:2022/06/20)
+      <p>ここでは、Fortran等を用いた数値計算の実習する際に、gnuplotとImageMagicを使って計算結果から動画を作成する方法を解説します。</p>      
+      <p>以下では、「1. Fortranによる連番ファイルの出力」、「2. gnuplotによる画像ファイルの出力」、「3. ImageMagickによる画像の結合」の3ステップを通じて、数値計算結果を動画として可視化する方法を学びます。</p>
+      <hr>
+      
+      <section>
+
+        <h2><a style="color:blue;" name="fortran">1. Fortranによる連番ファイルの出力</a></h2>
+	<p>ここでは、まずFortranを使って、連番ファイルを作る方法について学びます。Fortranのdoループを用いると、ファイル名に連続する番号が付けられたファイルの複数用意することが出来ます。例題として、下記のFortranプログラムをコンパイル・実行してみましょう。
+	  <pre><code>program main
+  implicit none
+  integer :: Nx,Nt,ix,it
+  real(8) :: Xf,Tf,dx,dt
+  real(8) :: f,t,x
+  character(50) :: cit,filename
+  Xf=10d0
+  Tf=10d0
+  Nt=50
+  Nx=100
+
+  dx=Xf/Nx
+  dt=Tf/Nt
+
+  do it=1,Nt
+     t=dt*it
+     
+     write(cit,'(I7.7)')it
+     filename=trim('anim_')//trim(cit)//'.dat'
+! Writing a data file
+
+     open(20,file=filename)
+     do ix=1,Nx
+        x=dx*ix
+        f=sin(x-t)
+        write(20,'(3e16.6E3)')x,f
+     end do
+     close(20)
+  end do
+
+end program main</code></pre>
+	  上記のプログラムをコンパイル・実行すると<code>anim_xxxxxxx.dat</code>という50個のデータファイルが出力されます。それぞれのデータファイルには、異なる時刻\(t\)に対する関数\(f(x,t)=sin(x-t)\)の値が座標\(x\)の関数として格納されています。ファイルの第一列目は座標\(x\)の値、第二列目は関数\(f(x,t)=sin(x-t)\)の値を記録しており、ファイル名に含まれる整数値が時刻\(t\)と関連付けられています。上記のFortranコードは、時間\(t\)に対する<code>do</code>ループと座標\(x\)に対する<code>do</code>の二重<code>do</code>ループから成っており、外側の<code>do it=1,Nt</code>から始まる<code>do</code>ループでは、各ステップで<code>open(20,file=filename)</code>によってファイルを開き、そのファイルへ三角関数の情報を書き込んでいます。各ステップの<code>it</code>について、<code>write(cit,'(I7.7)')it</code>によって整数型変数<code>it</code>から文字型変数<code>cit</code>への返還を行い、カウンター<code>it</code>の整数を含むようなファイル名を<code>filename=trim('anim_')//trim(cit)//'.dat'</code>によって作っています。<code>do ix=1,Nx</code>から始まる内側の<code>do</code>ループでは、三角関数を座標\(x\)の関数としてそれぞれのファイルに書き出しています。
+	</p>
+
+	
+	<br><br><hr>
+        <h2><a style="color:blue;" name="fortran">2. gnuplotによる画像ファイルの出力</a></h2>	
+	<p>次に、上記で作られた連番のデータファイルから、gnuplotを用いて連番の画像ファイルを作る方法を解説します。ここでは、gnuplotの<code>while</code>文を用いて、データファイルから画像ファイルへ変換することを考えます。例として、次のようなgnuplotのスクリプトを考えます。このスクリプトをテキストエディタを使って<code>plot.plt</code>と名前を付けて保存し、ターミナル上で<code>gnuplot plot.plt</code>と入力することで、gnuplotにスクリプトを読ませ、スクリプトを実行させることが出来ます。上記で作られた連番ファイルが準備されていれば、下記のgnuplotスクリプトを実行することで50個の画像ファイル(gifファイル)が生成されます。
+<pre><code>set term gif
+
+set yrange [-1.0:1.0]
+
+j = 0
+while (j<50){
+j = j+1
+filename_data = "anim_".sprintf('%07.0f.dat', j)
+filename_gif = "anim_".sprintf('%07.0f.gif', j)
+
+set output filename_gif
+p filename_data u 1:2 w l
+
+unset output
+
+}
+</code></pre>
+ここでは、簡単に上記のgnuplotスクリプトについて解説します。スクリプトは、gnuplotに読ませることで上から順番にコマンドを実行させることが出来ます。先頭の<code>set term gif</code>は、gif形式の画像ファイルを出力するための出力形式の設定を行っています。次の<code>set yrange [-1.0:1.0]</code>では、y軸の描画範囲を[-1.0:1.0]の範囲で固定しています。次に<code>j = 0</code>にてループのカウンターをゼロに初期化し、<code>while</code>文を用いてそれ以降の処理を繰り返し行っています。ここで、<code>while (j<50){}</code>は、<code>j</code>が50よち小さい間だけ、次の操作を繰り返す文となっています。そのすぐ後に<code>j=j+1</code>によってループのカウンター変数を1増加させ処理を進めていきます。<code>filename_data = "anim_".sprintf('%07.0f.dat', j)</code>と<code>filename_gif = "anim_".sprintf('%07.0f.gif', j)</code>の文では、整数<code>j</code>文字列に変換し、データファイル(<code>.dat</code>)と画像ファイル(<code>.gif</code>)のファイル名に組み込んでいます。その次の、<code>set output filename_gif</code>では出力するファイルの名前を設定し、さらに<code>p filename_data u 1:2 w l</code>にてデータファイルから画像ファイルへの出力を行っています。この操作をjを1から50まで繰り返すことで、連番のデータファイルから連番の画像ファイルを作ることが出来ます。</p>
+	<br><br><hr>
+        <h2><a style="color:blue;" name="fortran">3. ImageMagickによる画像の結合</a></h2>		
+	<p>次に、上記の操作で作られた連番の画像ファイルをImageMagickにより結合することで、動画の作成を行います。まず、ImageMagickがCygwinにインストールされているかを確認するためにコマンド<code>convert -version</code>をターミナル上で実行してみます。無事にImageMagickのバージョンが表示されていれば、ImageMagickはCygwinにインストールされています。ImageMagickがインストールされていない場合は、<a href=".index.html">Cygwinのインストールページ</a>を参考にImageMagickをインストールしてください。</p>
+	<p>ImageMagickの準備が整ったら、序機で用意した連番の画像ファイルがあるディレクトリ内で<code>convert -delay 10 -loop 0 anim_*.gif anim.gif</code>を実行してみましょう。ここでは、<code>convert</code>はImageMagickにおけるファイル変換のプログラムであり、<code>anim_*.gif</code>で表される連番の画像ファイルを結合することで<code>anim.gif</code>というgifのアニメーションファイルが作成されます。<code>convert</code>のオプションである<code>-delay</code>は、連結されたファイルの移り変わる速さを決めるオプションであり、<code>-loop 0</code>は連結されたgifアニメーションを無限にループすることを表すオプションです。上記の一連の操作によって下に示したようなgifのアニメーションが作成されているはずです。この方法を応用して、数値計算の結果を可視化してみましょう。
+	</p>
+	<img src="./movie/anim.gif" alt="gif animation" />	
+      </section>
+    </main>
+  </body>
+</html>
