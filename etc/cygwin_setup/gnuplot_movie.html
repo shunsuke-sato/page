@@ -6,7 +6,8 @@
     <link rel='stylesheet' href='https://cdn.jsdelivr.net/gh/kognise/water.css@latest/dist/light.css'>
     <link rel='stylesheet' href='../../style.css'> 
     <link rel='icon' href='../../favicon.ico'>
-
+    <script src="https://polyfill.io/v3/polyfill.min.js?features=es6"></script>
+    <script id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>        
     <title>Shunsuke A. Sato</title>
   </head>
   <body>
@@ -64,7 +65,7 @@
   end do
 
 end program main</code></pre>
-	  上記のプログラムをコンパイル・実行すると<code>anim_xxxxxxx.dat</code>という50個のデータファイルが出力されます。それぞれのデータファイルには、異なる時刻\(t\)に対する関数\(f(x,t)=sin(x-t)\)の値が座標\(x\)の関数として格納されています。ファイルの第一列目は座標\(x\)の値、第二列目は関数\(f(x,t)=sin(x-t)\)の値を記録しており、ファイル名に含まれる整数値が時刻\(t\)と関連付けられています。上記のFortranコードは、時間\(t\)に対する<code>do</code>ループと座標\(x\)に対する<code>do</code>の二重<code>do</code>ループから成っており、外側の<code>do it=1,Nt</code>から始まる<code>do</code>ループでは、各ステップで<code>open(20,file=filename)</code>によってファイルを開き、そのファイルへ三角関数の情報を書き込んでいます。各ステップの<code>it</code>について、<code>write(cit,'(I7.7)')it</code>によって整数型変数<code>it</code>から文字型変数<code>cit</code>への返還を行い、カウンター<code>it</code>の整数を含むようなファイル名を<code>filename=trim('anim_')//trim(cit)//'.dat'</code>によって作っています。<code>do ix=1,Nx</code>から始まる内側の<code>do</code>ループでは、三角関数を座標\(x\)の関数としてそれぞれのファイルに書き出しています。
+	  上記のプログラムをコンパイル・実行すると<code>anim_xxxxxxx.dat</code>という50個のデータファイルが出力されます。それぞれのデータファイルには、異なる時刻\(t\)に対する関数\(f(x,t)=\sin(x-t)\)の値が座標\(x\)の関数として格納されています。ファイルの第一列目は座標\(x\)の値、第二列目は関数\(f(x,t)=\sin(x-t)\)の値を記録しており、ファイル名に含まれる整数値が時刻\(t\)と関連付けられています。上記のFortranコードは、時間\(t\)に対する<code>do</code>ループと座標\(x\)に対する<code>do</code>の二重<code>do</code>ループから成っており、外側の<code>do it=1,Nt</code>から始まる<code>do</code>ループでは、各ステップで<code>open(20,file=filename)</code>によってファイルを開き、そのファイルへ三角関数の情報を書き込んでいます。各ステップの<code>it</code>について、<code>write(cit,'(I7.7)')it</code>によって整数型変数<code>it</code>から文字型変数<code>cit</code>への変換を行い、カウンター<code>it</code>の整数を含むようなファイル名を<code>filename=trim('anim_')//trim(cit)//'.dat'</code>によって作っています。<code>do ix=1,Nx</code>から始まる内側の<code>do</code>ループでは、三角関数を座標\(x\)の関数としてそれぞれのファイルに書き出しています。
 	</p>
 
 	
