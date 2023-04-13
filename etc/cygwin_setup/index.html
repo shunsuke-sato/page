@@ -24,9 +24,9 @@
         <li><a href="../../index.html">English</a></li>
       </ul>
 
-      <h2 style="color:#FF3C3C;">Windows PC上でのCygwin環境の構築 </h2>(最終更新日:2022/06/20)
-      <p>授業でFortran等を用いた数値計算の実習する際に、Windows PC上にCygwin環境を構築する方法を解説します。本ページの解説は、「<a href="https://www.sw.it.aoyama.ac.jp/2011/CP1/cygwin/">Cygwin インストール</a>」を参考に書かれています。リンク先のページも参考にしてください。</p>
-      <p>以下では、「<a href="#cygwin">1. Cygwinのインストール</a>」、「<a href="#fortran">2. Fortranプログラムの実行</a>」、「<a href="#gnuplot">3. gnuplotによる数値計算結果描画環境の構築</a>」について、それぞれ説明します。</p>
+      <h2 style="color:#FF3C3C;">Windows PC上でのCygwin環境の構築 </h2>(最終更新日:2023/04/12)
+      <p>授業でPythonやFortran等を用いた数値計算の実習する際に、Windows PC上にCygwin環境を構築する方法を解説します。本ページの解説は、「<a href="https://www.sw.it.aoyama.ac.jp/2011/CP1/cygwin/">Cygwin インストール</a>」を参考に書かれています。リンク先のページも参考にしてください。</p>
+      <p>以下では、「<a href="#cygwin">1. Cygwinのインストール</a>」、「<a href="#fortran">2. Fortranプログラムの実行</a>」、「<a href="#python">3. Pythonプログラムの実行</a>」、「<a href="#gnuplot">4. gnuplotによる数値計算結果描画環境の構築</a>」について、それぞれ説明します。</p>
       <hr>
       
 
@@ -91,7 +91,7 @@
 
 	<br><br><hr>	
 	<p><b>Step 10:</b><br>
-	  次に、どのパッケージを選んでいきます。ここでは、<b>diffutils, gcc-core, gcc-g++, gcc-fortran, gnuplot-base,gnuplot-X11, emacs-w32,ImageMagick</b>の8つのパッケージをデフォルトのパッケージに追加してインストールしていきます。まず、下図の赤線の部分のsearchにそれぞれのパッケージの名前を入れ、パッケージを検索します。次に、検索により見つかったパッケージのNewの欄(下図の青線で囲まれた部分)をクリックして、パッケージのバージョンを選びます。特にこだわりが無ければ、安定版(非test版)で最新のものを選びましょう。尚、"Skip"はインストールを行わないことを意味しており、初めから"Skip"以外のバージョンが指定されている場合は、そのままにしておきましょう。上記の全てのパッケージについてパッケージの選択が終わったら、右下にある「次へ」をクリックしてファイルのダウンロードを進めます。<a style="color:#FF3C3C;">また、ここで追加し忘れてしまったパッケージや新しく使いたいパッケージがあとから出てきた場合は、ここで用いているインストーラを使って、ここまでと同様の手順を踏むことで、既にインストールされているCygwinにパッケージを追加することが出来ます。</a>
+	  次に、どのパッケージを選んでいきます。ここでは、<b>diffutils, gcc-core, gcc-g++, gcc-fortran, gnuplot-base, gnuplot-X11, emacs-w32, ImageMagick, python39, python39-pip, python39-numpy, python39-matplotlib</b>の12個のパッケージをデフォルトのパッケージに追加してインストールしていきます。まず、下図の赤線の部分のsearchにそれぞれのパッケージの名前を入れ、パッケージを検索します。次に、検索により見つかったパッケージのNewの欄(下図の青線で囲まれた部分)をクリックして、パッケージのバージョンを選びます。特にこだわりが無ければ、安定版(非test版)で最新のものを選びましょう。尚、"Skip"はインストールを行わないことを意味しており、初めから"Skip"以外のバージョンが指定されている場合は、そのままにしておきましょう。上記の全てのパッケージについてパッケージの選択が終わったら、右下にある「次へ」をクリックしてファイルのダウンロードを進めます。<a style="color:#FF3C3C;">また、ここで追加し忘れてしまったパッケージや新しく使いたいパッケージがあとから出てきた場合は、ここで用いているインストーラを使って、ここまでと同様の手順を踏むことで、既にインストールされているCygwinにパッケージを追加することが出来ます。</a>
 	</p>
 	<img src="./fig/cygwin_install_08.png" alt="Cygwin installing 08" />
 
@@ -157,10 +157,24 @@ end program</code></pre>
 	<p><b>Step 6:</b><br> 最後に、作成された実行ファイル<code>hello.exe</code>を実際に実行してみます。ファイルを実行するために、下記のコマンドをターミナル上で打ち込んでみます。<pre><code>./hello.exe</code></pre>
 	  すると、画面上に"Hello world!!"という文字列が出力されます。これは、先ほど作成したプログラムによって出力された文字列です。さらにFortran言語を使ったプログラミングについて学びたい方は、<a href="https://wwwnucl.ph.tsukuba.ac.jp/comp_phys">筑波大学原子核理論研究室の数値計算</a>のページをご覧ください。
 	  <img src="./fig/fortran_06.png" alt="Fortran 06" />	  
-	</p>	
-	<br><br><hr>					
+	</p>
 
-        <h2><a style="color:blue;" name="gnuplot">3. gnuplotによる数値計算結果可視化環境の構築</a></h2>
+	<br><br><hr>
+
+        <h2><a style="color:blue;" name="python">3. Pythonプログラムの実行</a></h2>
+	<p><b>Step 1:</b><br> ここでは上記で準備されたCygwin上で、簡単なPythonのプログラムを書いて実行してみます。上記のFortranプログラムの実行と同じ要領で、hello.pyという名前のファイルに次のような内容を保存します。
+	  <pre><code>printf('Hello world!!')</code></pre>	  
+	</p>	
+	<br><hr>
+
+	<p><b>Step 2:</b><br>Fortranのコード<code>hello.f90</code>の場合とは異なり、明示的なコンパイルを行わずにPythonのコードを直接実行します。ここで作成したPythonプログラムは次のようなコマンドをターミナル上で打ち込むことにより実行できます。<pre><code>python hello.py</code></pre>
+	  すると、画面上に"Hello world!!"という文字列が出力されます。文字が出力されていれば、Pythonは正常にインストールされています。
+	</p>	
+	<br><br><hr>
+
+				
+
+        <h2><a style="color:blue;" name="gnuplot">4. gnuplotによる数値計算結果可視化環境の構築</a></h2>
 	<p><b>Step 1:</b><br> ここでは上記で準備されたCygwin上で、gnuplot(<a href="http://www.gnuplot.info/">http://www.gnuplot.info/</a>)を用いて数値計算結果をグラフにして可視化するための環境を構築します。上記のCygwinインストール時にgnuplotも同時にインストールされているので、Cygwin上で"gnuplot"と入力しEnterキーを押すことで、下図のようにgnuplotを起動することが出来ます。
 	  <img src="./fig/gnuplot_prep_01.png" alt="Gnuplot preparation 01" />	  
 	</p>	
