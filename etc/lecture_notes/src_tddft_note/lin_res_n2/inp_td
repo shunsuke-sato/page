@@ -1,0 +1,34 @@
+CalculationMode = td
+FromScratch = yes
+
+Radius = 10.0
+
+XCFunctional = lda_x + lda_c_pw
+Spacing = 0.4
+
+ExtraStates = 0
+
+PseudopotentialSet = hgh_lda
+
+# User defined valiable, (N-N distance)
+NN_distance = 2.0
+
+%Coordinates
+ "N" |  0 |  0 |  0.5*NN_distance
+ "N" |  0 |  0 | -0.5*NN_distance
+%
+
+Eigensolver = cg
+MaximumIter = 60
+ConvEigenError = yes
+EigensolverTolerance = 1e-8
+
+
+TDPropagator = aetrs
+TDExponentialMethod = taylor
+TDExpOrder = 4
+TDPropagationTime = 10*fs
+TDTimeStep = 0.08
+
+TDDeltaStrength = 0.01
+TDPolarizationDirection = 3
