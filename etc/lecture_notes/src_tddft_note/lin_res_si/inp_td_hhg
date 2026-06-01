@@ -1,0 +1,65 @@
+
+CalculationMode = td
+FromScratch = yes
+PeriodicDimensions = 3
+
+
+
+%LatticeVectors
+  0.0 | 0.5 | 0.5
+  0.5 | 0.0 | 0.5
+  0.5 | 0.5 | 0.0
+%
+
+a = 10.18
+%LatticeParameters
+ a | a | a
+%
+
+Spacing = (a/sqrt(2.0))/16.1
+
+%ReducedCoordinates
+ "Si" | 0.0 | 0.0 | 0.0
+ "Si" | 1/4 | 1/4 | 1/4
+%
+
+nk = 5
+%KPointsGrid
+  nk |  nk |  nk
+%
+
+KPointsUseSymmetries = yes
+%SymmetryBreakDir
+  1 | 0 | 0
+%
+
+
+ExperimentalFeatures = yes
+
+kick0 = 0.005
+clight = 137.035999679 # in a.u.
+
+Iau  = sqrt(1e12/3.509470e16) #Conservion in a.u.
+omega = 1.55/27.2114 # 3000nm -> 0.4133 eV -> 0.01518 Ha
+omega_zero = 0.0/27.2114 # 3000nm -> 0.4133 eV -> 0.01518 Ha
+clight = 137.035999679 # in a.u.
+Tpulse = 10.0*fs
+
+%TDExternalFields
+  vector_potential | 1 | 0 | 0 | 0.0 | "pump"
+%
+
+%TDFunctions
+  "pump" | tdf_from_expr | "-Iau/omega*clight*sin(pi*t/Tpulse)^2*(1-step(t-Tpulse))*sin(omega*(t-Tpulse/2))"
+%
+
+
+%TDOutput
+ total_current
+%
+
+TDPropagator = aetrs
+TDExponentialMethod = taylor
+TDExpOrder = 4
+TDPropagationTime = 10*fs
+TDTimeStep = 0.08

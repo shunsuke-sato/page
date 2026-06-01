@@ -1,0 +1,48 @@
+
+CalculationMode = gs
+
+PeriodicDimensions = 3
+
+XCFunctional = lda_x + lda_c_pw
+
+
+ExtraStates = 4
+
+a = 10.18
+%LatticeParameters
+ a | a | a
+%
+
+Spacing = (a/sqrt(2.0))/16.1
+
+%LatticeVectors
+ 0.0 | 0.5 | 0.5
+ 0.5 | 0.0 | 0.5
+ 0.5 | 0.5 | 0.0
+%
+
+%ReducedCoordinates
+ "Si" | 0.0 | 0.0 | 0.0
+ "Si" | 1/4 | 1/4 | 1/4
+%
+
+nk = 5
+%KPointsGrid
+  nk |  nk |  nk
+%
+
+Eigensolver = cg
+MaximumIter = 60
+ConvEigenError = yes
+EigensolverTolerance = 1e-8
+
+KPointsUseSymmetries = yes
+%SymmetryBreakDir
+  1 | 0 | 0
+%
+
+%Output
+ dos
+%
+
+

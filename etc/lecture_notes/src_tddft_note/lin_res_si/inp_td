@@ -1,0 +1,59 @@
+
+CalculationMode = td
+FromScratch = yes
+PeriodicDimensions = 3
+
+
+
+%LatticeVectors
+  0.0 | 0.5 | 0.5
+  0.5 | 0.0 | 0.5
+  0.5 | 0.5 | 0.0
+%
+
+a = 10.18
+%LatticeParameters
+ a | a | a
+%
+
+Spacing = (a/sqrt(2.0))/16.1
+
+%ReducedCoordinates
+ "Si" | 0.0 | 0.0 | 0.0
+ "Si" | 1/4 | 1/4 | 1/4
+%
+
+nk = 5
+%KPointsGrid
+  nk |  nk |  nk
+%
+
+KPointsUseSymmetries = yes
+%SymmetryBreakDir
+  1 | 0 | 0
+%
+
+
+ExperimentalFeatures = yes
+
+kick0 = 0.005
+clight = 137.035999679 # in a.u.
+
+
+%TDExternalFields
+ vector_potential | 1.0 | 0.0 | 0.0 | 0.0 | "kick_ac"
+%
+
+%TDFunctions
+   "kick_ac" | tdf_from_expr | "-kick0*clight*step(t)"
+%
+
+%TDOutput
+ total_current
+%
+
+TDPropagator = aetrs
+TDExponentialMethod = taylor
+TDExpOrder = 4
+TDPropagationTime = 10*fs
+TDTimeStep = 0.08
